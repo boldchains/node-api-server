@@ -9,8 +9,8 @@ The dashboard is expected to be a simple single page application, displaying the
 
 
 # Assumptions  
-1. Drones' geo locations and speed are received every seconds
-2. Each Drone is sending its data at own rate; i.e. not all Drones' data is received at the same time
+1. Drones' geo locations and speed are received asynchronously
+2. Each Drone is sending its data at its own rate; i.e. not all Drones' data are received at the same time
 3. A dashboard looks like:
 #### Dashboard: Drones  
 
@@ -21,4 +21,11 @@ The dashboard is expected to be a simple single page application, displaying the
 
 # Design  
 
-Data retrieved from drones can be seen as streams of data. Each stream represents data received from a drone.  For real-time data capturing, it is best to use Reactive Programming's Observables.
+Asynchronous data received from drones can be seen as streams of data.  For asynchronous data streams, use of __Reactive Programming__ can provide an elegant solution.  
+
+
+As __NodeJS__ is popular for building asynchronous application, the dashboard implementation can be done in NodeJS.  
+
+To handle real-time factor, client's polling to server to fetch data periodically is not an ideal one, instead, __websockets__ and __socket.io__ can be used.
+
+For client side coding __React JS__ can be used.
