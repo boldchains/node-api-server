@@ -6,7 +6,20 @@ const axios = require('axios')
 const port = process.env.PORT || 4001
 const index = require('./routes/index')
 
-const id = process.env.drone1id || 1234 // drone id
+//const id = process.env.drone1id || 111 // drone id
+const drones = require('./simulate/droneParams')
+const socketIOClient = require('socket.io-client')
+
+console.log('Drone Parameters: ', drones.params)
+//const drone1_url = 'http://localhost:3111'
+//const drone1_socket =socketIOClient(drone1_url)
+const droneSockets = []
+drones.params.forEach(param => {
+  let socket = socketIOClient(`http://${param.hostname}:${param.port}`)
+  //let socket = socketIOClient('http://localhost:3111')
+  droneSockets.push(socket)
+})
+
 
 const app = express()
 app.use(index)
@@ -17,33 +30,25 @@ const io = socketIo(server)
 const freq = 1000
 io.on('connection', socket => {
   console.log('Drone connected');
-  setInterval(() => getApiAndEmit(socket), freq)
+  setInterval(() => emitDroneDataToClient(socket), freq)
   socket.on('disconnect', () => console.log('Drone disconnected'))
 })
 
-const socketIOClient = require('socket.io-client')
-const drone1_url = 'http://localhost:3011'
-const drone1_socket =socketIOClient(drone1_url)
+console.log('DroneSockets size: ', droneSockets.length)
 
-const getApiAndEmit = socket => {
+const emitDroneDataToClient = socket => {
   try {
-    drone1_socket.on(`from_${id}`, data => {
-      //let longStr = toStr(data.longitude)
-      //let latStr = toStr(data.latitude)
-      let geo = `Geo Location: \n ID: ${data.id} Longitude: ${data.longitude} Latitude: ${data.latitude} Altitude: ${data.altitude}m Speed: ${data.speed}mph`
-      socket.emit('FromAPI', geo)
+    droneSockets.forEach((drone, i) => {
+      drone.on(`from_${drones.params[i].id}`, data => {
+        let geo = `Geo Location: \n ID: ${data.id} Longitude: ${data.longitude} Latitude: ${data.latitude} Altitude: ${data.altitude}m Speed: ${data.speed}mph`
+        console.log(geo)
+        socket.emit('FromAPI', geo)
+      })
     })
+
   } catch(error) {
     console.error(`Error: ${error.code}`)
   }
 }
-/*
-const toStr = (data) => {
-  // console.log('app.js >> toStr(data) ', data)
-  if(!data) return ''
-  return data.degree+String.fromCharCode(176)+' '+
-          data.minute+"' "+
-          data.second+'" '+
-          data.direction
-} */
+
 server.listen(port, () => console.log(`Listening on port ${port}`))
