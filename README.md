@@ -11,13 +11,19 @@ The dashboard is expected to be a simple single page application, displaying the
 # Assumptions  
 1. Drones' geo locations and speed are received asynchronously
 2. Each Drone is sending its data at its own rate; i.e. not all Drones' data are received at the same time
-3. A dashboard looks like:
+3. At this time, data is received from drones only and data is not sent to drones for any of the following purposes:
+ * controlling its speed
+ * changing its geo locations
+ * stopping
+ * starting
+4. A dashboard looks like:
 #### Dashboard: Drones  
 
 | Unique-ID   |Speed in mph  |Latitude            | Longitude            | Altitude   | Status       |
 |:-----------:|:------------:|:------------------:| --------------------:| ----------:| ------------:|
 | 1234        | 156          | 15&deg;35' 23.9"S  | 156&deg;50'51.948"E  | 75 m       | Active       |
 | 4567        | 162          | 26&deg;46'3.81"N   | 55&deg;28'1.23"W     | 12 m       | __Inactive__ |
+
 
 # Design  
 
