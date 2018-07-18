@@ -40,9 +40,9 @@ const emitDroneDataToClient = socket => {
   try {
     droneSockets.forEach((drone, i) => {
       drone.on(`from_${drones.params[i].id}`, data => {
-        let geo = `Geo Location: \n ID: ${data.id} Longitude: ${data.longitude} Latitude: ${data.latitude} Altitude: ${data.altitude}m Speed: ${data.speed}mph`
-        console.log(geo)
-        socket.emit('FromAPI', geo)
+        //let geo = `Geo Location: \n ID: ${data.id} Longitude: ${data.longitude} Latitude: ${data.latitude} Altitude: ${data.altitude}m Speed: ${data.speed}mph`
+        //console.log(geo)
+        socket.emit('FromAPI', data)
       })
     })
 
