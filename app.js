@@ -28,22 +28,22 @@ const drone1_socket =socketIOClient(drone1_url)
 const getApiAndEmit = socket => {
   try {
     drone1_socket.on(`from_${id}`, data => {
-      let longStr = toStr(data.longitude)
-      let latStr = toStr(data.latitude)
-      let geo = `Geo Location: \n Longitude: ${longStr} Latitude: ${latStr} Altitude: ${data.altitude} Speed: ${data.speed}`
+      //let longStr = toStr(data.longitude)
+      //let latStr = toStr(data.latitude)
+      let geo = `Geo Location: \n ID: ${data.id} Longitude: ${data.longitude} Latitude: ${data.latitude} Altitude: ${data.altitude}m Speed: ${data.speed}mph`
       socket.emit('FromAPI', geo)
     })
   } catch(error) {
     console.error(`Error: ${error.code}`)
   }
 }
-
+/*
 const toStr = (data) => {
-  console.log('app.js >> toStr(data) ', data)
+  // console.log('app.js >> toStr(data) ', data)
   if(!data) return ''
   return data.degree+String.fromCharCode(176)+' '+
           data.minute+"' "+
           data.second+'" '+
           data.direction
-}
+} */
 server.listen(port, () => console.log(`Listening on port ${port}`))
