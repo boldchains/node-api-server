@@ -21,11 +21,16 @@ The dashboard is expected to be a simple single page application, displaying the
 
 # Design  
 
+### Server-side
+
 Asynchronous data received from drones can be seen as streams of data.  For asynchronous data streams, use of __Reactive Programming__ can provide an elegant solution.  
 
 
 As __NodeJS__ is popular for building asynchronous application, the dashboard implementation can be done in NodeJS.  
 
-To handle real-time factor, client's polling to server to fetch data periodically is not an ideal one, instead, __websockets__ and __socket.io__ can be used.
+To handle real-time monitoring factor, client's polling to server to fetch data periodically is not an ideal one, instead, __websockets__ protocol and __socket.io__ library can be used which are already widely used for streaming related requirements, instant messengers applications.
 
-For client side coding __React JS__ can be used.
+
+### Client-side
+
+For client side coding another popular library __React JS__ can be used.
