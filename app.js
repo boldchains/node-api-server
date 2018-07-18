@@ -26,13 +26,11 @@ const drone1_url = 'http://localhost:3011'
 const drone1_socket =socketIOClient(drone1_url)
 
 const getApiAndEmit = socket => {
-  //let drone1_url = 'https://api.darksky.net/forecast/13a7df2d0e3e159a27b406c349f2bc0d/43.7695,11.2558'
   try {
-    //const res = await axios.get(drone1_url)
-    //socket.emit('FromAPI', res.data.currently.temperature)
-    //socket.emit('FromAPI', res.data)
     drone1_socket.on(`from_${id}`, data => {
-      let geo = `Geo Location: ${data.longitude}`
+      let longStr = toStr(data.longitude)
+      let latStr = toStr(data.latitude)
+      let geo = `Geo Location: \n Longitude: ${longStr} Latitude: ${latStr} Altitude: ${data.altitude} Speed: ${data.speed}`
       socket.emit('FromAPI', geo)
     })
   } catch(error) {
@@ -40,4 +38,12 @@ const getApiAndEmit = socket => {
   }
 }
 
+const toStr = (data) => {
+  console.log('app.js >> toStr(data) ', data)
+  if(!data) return ''
+  return data.degree+String.fromCharCode(176)+' '+
+          data.minute+"' "+
+          data.second+'" '+
+          data.direction
+}
 server.listen(port, () => console.log(`Listening on port ${port}`))
