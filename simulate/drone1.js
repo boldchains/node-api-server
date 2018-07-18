@@ -33,6 +33,7 @@ io.on('connection', socket => {
 const emitGeoLocation = socket => {
   try {
     data = {
+      id: id,
       longitude: randLongitude(),
       latitude: randLatitude(),
       altitude: randAltitude(),
@@ -51,7 +52,11 @@ const randLongitude = () => {
   let minute = Math.floor(Math.random() * 100)
   let second = (Math.random() * 10).toFixed(2)
   let direction = degree % 2 ? 'E' : 'W'
-  return {degree: degree, minute: minute, second: second, direction: direction}
+  //return {degree: degree, minute: minute, second: second, direction: direction}
+  return degree+String.fromCharCode(176)+' '+
+          minute+"' "+
+          second+'" '+
+          direction
 }
 
 const randLatitude = () => {
@@ -60,7 +65,11 @@ const randLatitude = () => {
   let minute = Math.floor(Math.random() * 100)
   let second = (Math.random() * 10).toFixed(2)
   let direction = degree % 2 ? 'N' : 'S'
-  return {degree: degree, minute: minute, second: second, direction: direction}
+  //return {degree: degree, minute: minute, second: second, direction: direction}
+  return degree+String.fromCharCode(176)+' '+
+          minute+"' "+
+          second+'" '+
+          direction
 }
 
 const randAltitude = () => {
