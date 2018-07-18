@@ -1,0 +1,26 @@
+{
+  "name": "track-drones-server",
+  "version": "0.1.0",
+  "description": "A prototype on tracking drones geo positions",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "drone",
+    "track",
+    "geolocation",
+    "prototype"
+  ],
+  "author": "mohankumaranna",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "help": "^3.0.2",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
