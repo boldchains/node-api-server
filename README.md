@@ -7,7 +7,6 @@ Each drone has a unique identifier; it reports its geo-location co-ordinates to 
 
 The dashboard is expected to be a simple single page application, displaying the list of active drones, by their unique-identifiers, along with their current speed.  Visually highlight those drones that are not moving for more than 10 seconds.
 
-
 # Assumptions  
 1. Data from Drones are received asynchronously
 2. Rate at which data received differs from one drone to another; i.e. drone1 may send data every second, drone2 may send data every two seconds
@@ -30,14 +29,18 @@ The dashboard is expected to be a simple single page application, displaying the
 
 ### Server-side
 
-Asynchronous data received from drones can be seen as streams of data.  For asynchronous data streams, use of __Reactive Programming__ can provide an elegant solution.  
+As __NodeJS__ is popular for building asynchronous application, the server side requirment can be implemented in NodeJS.  
 
-
-As __NodeJS__ is popular for building asynchronous application, the dashboard implementation can be done in NodeJS.  
-
-To handle real-time monitoring factor, client's polling to server to fetch data periodically is not an ideal one, instead, __websockets__ protocol and __socket.io__ library can be used which are already widely used for streaming related requirements, instant messengers applications.
-
+To fetch real-time data periodically, client's polling to server is not an ideal one, instead, __socket.io__ library can be used as it is widely used for real-time streaming apps, instant messengers.
 
 ### Client-side
 
-For client side coding another popular library __React JS__ can be used.
+For client side coding another popular library __React JS__ can be used, which again supports dynamic data display.
+
+
+# Skills Required (level 0 -5; 0: no experience 5: Highly Experienced)  
+1. Node JS (5)
+2. React JS (5)
+3. Socket.IO / Real-time App Development (0)
+4. Streaming / ReactiveX / Observables (3)
+5. Docker (0)
