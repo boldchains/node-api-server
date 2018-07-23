@@ -3,42 +3,23 @@
 //const socketIo = require('socket.io')
 //const axios = require('axios')
 
-import express from 'express'
-import bodyParser from 'body-parser'
-import cors from 'cors'
-import ErrorHandler from 'express-simple-errors'
-import http from 'http'
-import socketIo from 'socket.io'
-import axios from 'axios'
-import socketIOClient from 'socket.io-client'
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+//const errorHandler = require('express-simple-errors')
+const http = require('http')
+const socketIo = require('socket.io')
+const axios = require('axios')
 
-import routes from './track/routes'
+const routes = require('./track/routes')
 
-//const port = process.env.PORT || 4001
+const port = process.env.PORT || 4001
 //const index = require('./routes/index')
 
-const drones = require('./simulate/droneParams')
-//import { droneParams } from './simulate/droneParams'
-/*
-const droneParams = [{
-  id: 111,
-  hostname: '127.0.0.1',
-  port: 3111,
-  freq: 1000
-}, {
-  id: 222,
-  hostname: '127.0.0.1',
-  port: 3222,
-  freq: 2000
-}, {
-  id: 333,
-  hostname: '127.0.0.1',
-  port: 3333,
-  freq: 20000
-}];
-*/
-
-//const socketIOClient = require('socket.io-client')
+//////////////////// SIMULATED DRONES: CLIENT SETUP //////////////////////
+///////////////////  DRONES DATA RECEIVER ////////////////////////////////
+const socketIOClient = require('socket.io-client')
+const drones = require('./droneParams')
 
 console.log('Drone Parameters: ', drones.params)
 
@@ -48,6 +29,8 @@ drones.params.forEach(param => {
   droneSockets.push(socket)
 })
 
+
+///////////////////////  DRONE SERVER SETUP //////////////////////////
 const app = express()
 //app.use(index)
 
@@ -58,7 +41,7 @@ app.disable('etag')
 
 app.use('/', routes())
 
-const errorHandler = new ErrorHandler()
+//const errorHandler = new ErrorHandler()
 
 // validation errors are not typed correctly - changing here
 app.use((err, req, res, next) => {
@@ -69,6 +52,7 @@ app.use((err, req, res, next) => {
   next(err)
 })
 
+/*
 errorHandler.setHandler('ValidationError', (err, stack) => {
   const res = {}
   res.status = 'Error'
@@ -78,7 +62,7 @@ errorHandler.setHandler('ValidationError', (err, stack) => {
   return res
 })
 
-app.use(errorHandler.middleware())
+app.use(errorHandler.middleware())  */
 
 const appHttpServer = http.createServer(app)
 const io = socketIo(appHttpServer)
@@ -129,5 +113,7 @@ const timeNow = () => { // Answers in seconds
 }
 */
 
-//server.listen(port, () => console.log(`Listening on port ${port}`))
-export default appHttpServer
+//appHttpServer.listen(port, () => console.log(`Listening on port ${port}`))
+module.exports = {
+  appHttpServer: appHttpServer
+}

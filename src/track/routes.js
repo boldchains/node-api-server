@@ -1,8 +1,8 @@
 // const express = require('express')
 // const router = express.Router()
-import express from 'express'
-import { validate } from 'isvalid'
-import { errors } from 'express-simple-errors'
+const express = require('express')
+const validate = require('isvalid')
+const errors = require('express-simple-errors')
 
 /*
 // though the server is not intended to serve any HTML content,
@@ -14,7 +14,8 @@ router.get('/', (req, res) => {
 module.exports = router
 */
 
-export default function() {
+//export default function() {
+module.exports = function() {
   const router = express.Router()
 
   router.route('/')

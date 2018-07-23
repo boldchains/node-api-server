@@ -1,5 +1,5 @@
 {
-  "name": "track-drones-server",
+  "name": "drones-server",
   "version": "0.1.0",
   "description": "A prototype on tracking drones geo positions",
   "scripts": {

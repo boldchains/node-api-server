@@ -10,12 +10,12 @@ The dashboard is expected to be a simple single page application, displaying the
 # Assumptions  
 1. Data from Drones are received asynchronously
 2. Rate at which data received differs from one drone to another; i.e. drone1 may send data every second, drone2 may send data every two seconds
-3. At this time, data is received from drones only and data is not sent to drones for any of the following purposes:
+3. At this time, data is ONLY RECEIVED and NOT SENT to drones for any of the following purposes:
  * controlling its speed
  * changing its geo locations
  * stopping
  * starting
-4. For the purpose of this prototype, actual drones are not used; instead simulated using nodejs servers
+4. For the purpose of this prototype, actual drones are not used, instead, simulated using nodejs servers
 5. A dashboard looks like:
 #### Dashboard: Drones  
 
@@ -31,7 +31,7 @@ The dashboard is expected to be a simple single page application, displaying the
 
 As __NodeJS__ is popular for building asynchronous application, the server side requirment can be implemented in NodeJS.  
 
-To fetch real-time data periodically, client's polling to server is not an ideal one, instead, __socket.io__ library can be used as it is widely used for real-time streaming apps, instant messengers.
+To fetch real-time data periodically, client's polling to server is not an ideal one, instead, __socket.io__ library can be used as it is widely used for real-time streaming apps, instant messengers, etc.
 
 ### Client-side
 
