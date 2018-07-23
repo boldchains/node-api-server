@@ -18,7 +18,7 @@ const droneParams = [
     id: 333,
     hostname: '127.0.0.1',
     port: 3333,
-    freq: 20000
+    freq: 20000 // set high to test 'Inactive' status after 10 seconds
   }
 ]
 

@@ -1,8 +1,6 @@
 /////////////////////  SERVER  ////////////////////////
 
 const server = require('./server')
-// const drone1 = require('./simulators/drone1')
-
 const port = process.env.PORT || 4001
 
 server.appHttpServer.listen(port, () => {

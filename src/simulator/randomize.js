@@ -1,4 +1,4 @@
-const params = require('./params')
+const params = require('./geoParams')
 
 const randomLongitude = () => {
   let degree = random(params.longitude)
