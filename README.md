@@ -15,7 +15,7 @@ The dashboard is expected to be a simple single page application, displaying the
  * changing its geo locations
  * stopping
  * starting
-4. For the purpose of this prototype, actual drones are not used, instead, simulated using nodejs servers
+4. For the purpose of this prototype, actual drones are not used, instead, simulated in nodejs server
 5. A dashboard looks like:
 #### Dashboard: Drones  
 
@@ -38,9 +38,9 @@ To fetch real-time data periodically, client's polling to server is not an ideal
 For client side coding another popular library __React JS__ can be used, which again supports dynamic data display.
 
 
-# Skills Required (level 0 -5; 0: no experience 5: Highly Experienced)  
+# Skills Required (level) (0-5; 0-No experience, 5-Experienced)  
 1. Node JS (5)
 2. React JS (5)
-3. Socket.IO / Real-time App Development (0)
+3. Socket.IO / Real-time App Development (1)
 4. Streaming / ReactiveX / Observables (3)
-5. Docker (0)
+5. Docker (1)

@@ -22,6 +22,7 @@ exports.simulate = (data) => {
     socket.on('disconnect', () => console.log('Drone disconnected'))
   })
 }
+
 const emitGeoLocation = (socket, id) => {
   try {
     socket.emit(`from_${id}`, randomData(id))
