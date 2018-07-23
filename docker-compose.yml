@@ -1,8 +1,9 @@
 version: '2'
 services:
-  web:
+  app:
     build: .
-    command: npm run start-with-simulator
+    command: npm run start
+    container_name: server
     volumes:
       - .:/usr/app/
       - /usr/app/node_modules

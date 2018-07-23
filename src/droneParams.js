@@ -1,3 +1,6 @@
+//  List any number of drones with Parameters;
+//  for now, only three drones with parameters are added
+
 const droneParams = [
   {
     id: 111,
