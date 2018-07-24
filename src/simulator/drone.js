@@ -1,35 +1,39 @@
-const http = require('http')
-const socketIo = require ('socket.io')
-const random = require('./randomize')
+const http = require('http');
+const socketIo = require ('socket.io');
+const random = require('./randomize');
 
 exports.simulate = (data) => {
-  let id = data.id
-  let hostname = data.hostname
-  let port = data.port
-  let freq = data.freq
+  let id = data.id;
+  //let hostname = data.hostname;
+  let port = data.port;
+  let freq = data.freq;
 
+  let server = http.createServer().listen(port);
+  /*
   let server = http.createServer().listen(port, hostname, () => {
     console.log(`Drone# ${id} active at http://${hostname}:${port}/`)
-  })
-  let io = socketIo(server)
-  let interval = null
+  });
+  */
+
+  let io = socketIo(server);
+  let interval = null;
   io.on('connection', socket => {
-    console.log(`Drone# ${id} connected`)
+    //console.log(`Drone# ${id} connected`);
     if(interval) {
-      clearInterval(interval)
+      clearInterval(interval);
     }
-    interval = setInterval(() => emitGeoLocation(socket, id), freq)
-    socket.on('disconnect', () => console.log('Drone disconnected'))
-  })
-}
+    interval = setInterval(() => emitGeoLocation(socket, id), freq);
+    //socket.on('disconnect', () => console.log('Drone disconnected'));
+  });
+};
 
 const emitGeoLocation = (socket, id) => {
   try {
-    socket.emit(`from_${id}`, randomData(id))
+    socket.emit(`from_${id}`, randomData(id));
   } catch(error) {
-    console.error(`Error: ${error} - Drone# ${id}`)
+    //console.error(`Error: ${error} - Drone# ${id}`);
   }
-}
+};
 
 const randomData = id => {
   return {
@@ -38,5 +42,5 @@ const randomData = id => {
     latitude: random.latitude(),
     altitude: random.altitude(),
     speed: random.speed()
-  }
-}
+  };
+};
