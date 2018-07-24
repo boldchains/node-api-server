@@ -20,6 +20,6 @@ const droneParams = [
     port: 3333,
     freq: 20000 // set high to test 'Inactive' status after 10 seconds
   }
-]
+];
 
-module.exports.params = droneParams
+module.exports.params = droneParams;
