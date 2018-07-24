@@ -1,4 +1,4 @@
-# A prototype on __Track Drones__
+# A prototype on __Track Drones__ (server-side)
 
 # Requirements  
 ABC company has a number of drones flying around the country.  Build a system to track the location of every drone in real-time. The system's dashboard will only display the last location of the drones, so, no history needs to be maintained in the backend.  For simplicity, store the state of the application in-memory.
@@ -21,8 +21,9 @@ The dashboard is expected to be a simple single page application, displaying the
 
 | Unique-ID   |Speed in mph  |Latitude            | Longitude            | Altitude   | Status       |
 |:-----------:|:------------:|:------------------:| --------------------:| ----------:| ------------:|
-| 1234        | 156          | 15&deg;35' 23.9"S  | 156&deg;50'51.948"E  | 75 m       | Active       |
-| 4567        | 162          | 26&deg;46'3.81"N   | 55&deg;28'1.23"W     | 12 m       | __Inactive__ |
+| 111         | 156          | 15&deg;35' 23.9"S  | 156&deg;50'51.948"E  | 75 m       | Active       |
+| 222         | 6            | 85&deg;35' 53.9"S  | 169&deg;50'21.948"W  | 5 m        | Active       |
+| 333         | 62           | 26&deg;46'3.81"N   | 55&deg;28'1.23"W     | 12 m       | __Inactive__ |
 
 
 # Design  
@@ -35,12 +36,35 @@ To fetch real-time data periodically, client's polling to server is not an ideal
 
 ### Client-side
 
-For client side coding another popular library __React JS__ can be used, which again supports dynamic data display.
+For client side implementation another popular library __React JS__ can be used, which again supports dynamic data display.
 
 
-# Skills Required (level) (0-5; 0-No experience, 5-Experienced)  
-1. Node JS (5)
-2. React JS (5)
-3. Socket.IO / Real-time App Development (1)
-4. Streaming / ReactiveX / Observables (3)
-5. Docker (1)
+# Pre-requisites  
+
+Skills in the following libraries are required:  
+
+1. Node JS
+2. React JS
+3. Socket.IO
+4. Docker (if prototype is run inside such a container)
+5. NPM / YARN (optional)
+
+# Installation (server-side)
+### Directly on server machine
+
+1. Unzip the drones-server.zip into a folder
+2. In a command line, run _npm install_ or _yarn_  
+3. npm run build  
+4. npm run start  
+5. Now, open a browser; enter url as __http://localhost:4001__  it will show a {"response":"Server is alive"}.  This indicates that server is operational.  
+6. Proceed with Installation of client-side.  For details, refer README in respective zip file.    
+
+### Docker container  
+1. Unzip the drones-server.zip into a folder  
+2. In a command line, run __docker-compose up__  
+3. After installing required libraries, it will run the server inside the container  
+4. Now, open a browser; enter url as __http://localhost:4001__  it will show a {"response":"Server is alive"}.  This indicates that server is operational.  
+
+# Simulated Drones  
+
+For now, three drones are added.  More drones can be added by modifying src/droneParams.js file.  Also, remember to update, client side file src/App.js for its variable droneIds.  [TODO: hard-coded droneIds on client side needs to be refactored]
