@@ -14,13 +14,28 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const http = require('http');
+const morgan = require('morgan'); // HTTP request logger middleware for node.js
+const winston = require('./config/winston');
 const socketIo = require('socket.io');
 
 const routes = require('./track/routes');
-//const port = process.env.PORT || 4001;
 const app = express();
 
 // app middleware
+app.use(morgan('combined', {stream: winston.stream }));
+// error handler
+app.use(function(err, req, res) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // add winston logging
+  winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 app.use(cors());
 app.use(bodyParser.json({type: 'application/json'}));
 app.disable('etag');
@@ -38,12 +53,10 @@ app.use((err, req, res, next) => {
 const appHttpServer = http.createServer(app);
 const io = socketIo(appHttpServer);
 
-//const freq = 1000
 io.on('connection', socket => {
-  //console.log('Drone connected');
-  //setInterval(() => emitDroneDataToClient(socket), freq)
+  winston.info('Drone connected');
   emitDroneDataToClient(socket);
-  //socket.on('disconnect', () => console.log('Drone disconnected'));
+  socket.on('disconnect', () => winston.info('Drone disconnected'));
 });
 
 const emitDroneDataToClient = socket => {
@@ -54,7 +67,7 @@ const emitDroneDataToClient = socket => {
       });
     });
   } catch(error) {
-    //console.error(`Error: ${error.code}`);
+    winston.error(`Error: ${error.code}`);
   }
 };
 
