@@ -1,0 +1,7 @@
+{"message":"Drone# 111 active at http://127.0.0.1:3111/","level":"info"}
+{"message":"Drone# 222 active at http://127.0.0.1:3222/","level":"info"}
+{"message":"Drone# 333 active at http://127.0.0.1:3333/","level":"info"}
+{"message":"Drone# 111 connected","level":"info"}
+{"message":"Drone# 222 connected","level":"info"}
+{"message":"Drone# 333 connected","level":"info"}
+{"message":"Drone connected","level":"info"}
