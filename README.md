@@ -67,4 +67,9 @@ Skills in the following libraries are required:
 
 # Simulated Drones  
 
-For now, three drones are added.  More drones can be added by modifying src/droneParams.js file.  Also, remember to update, client side file src/App.js for its variable droneIds.  [TODO: hard-coded droneIds on client side needs to be refactored]
+For now, three drones are added.  More drones can be added by modifying src/droneParams.js file.  Also, remember to update, client side file src/App.js for its variable droneIds.  
+
+# TODO  
+1. Refactor hardcoded data into a separate file or .env file  
+2. Write USER MANUAL    
+3. Write TECHNICAL MANUAL  
