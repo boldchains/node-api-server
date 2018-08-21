@@ -1,22 +1,13 @@
 # A prototype on __Track Drones__ (server-side)
 
-# Requirements  
-ABC company has a number of drones flying around the country.  Build a system to track the location of every drone in real-time. The system's dashboard will only display the last location of the drones, so, no history needs to be maintained in the backend.  For simplicity, store the state of the application in-memory.
+# Introduction  
+Developing a dashboard to show positions of drones flying in an area.  Drone has a unique identifier, it sends its geo-location co-ordinates to the central server in real-time.
 
-Each drone has a unique identifier; it reports its geo-location co-ordinates to the central server in real-time, through a cellular modem connection.  Cellular modem connections are expensive, therefore, make sure the drones report back their location using as little data as possible.
+Dashboard displays active drones along with their current speed.  Highlights drones that are not moving for more than 10 seconds.
 
-The dashboard is expected to be a simple single page application, displaying the list of active drones, by their unique-identifiers, along with their current speed.  Visually highlight those drones that are not moving for more than 10 seconds.
+For prototype purpose, Simulated drones are used.
 
-# Assumptions  
-1. Data from Drones are received asynchronously
-2. Rate at which data received differs from one drone to another; i.e. drone1 may send data every second, drone2 may send data every two seconds
-3. At this time, data is ONLY RECEIVED and NOT SENT to drones for any of the following purposes:
- * controlling its speed
- * changing its geo locations
- * stopping
- * starting
-4. For the purpose of this prototype, actual drones are not used, instead, simulated in nodejs server
-5. A dashboard looks like:
+Dashboard looks like:
 #### Dashboard: Drones  
 
 | Unique-ID   |Speed in mph  |Latitude            | Longitude            | Altitude   | Status       |
@@ -26,28 +17,15 @@ The dashboard is expected to be a simple single page application, displaying the
 | 333         | 62           | 26&deg;46'3.81"N   | 55&deg;28'1.23"W     | 12 m       | __Inactive__ |
 
 
-# Design  
-
 ### Server-side
 
-As __NodeJS__ is popular for building asynchronous application, the server side requirment can be implemented in NodeJS.  
+The server side is developed in __ExpressJS/NodeJS__.  To get real-time data __socket.io__ library is used
 
-To fetch real-time data periodically, client's polling to server is not an ideal one, instead, __socket.io__ library can be used as it is widely used for real-time streaming apps, instant messengers, etc.
 
 ### Client-side
 
-For client side implementation another popular library __React JS__ can be used, which again supports dynamic data display.
+The client side is developed in __React JS__ library.
 
-
-# Pre-requisites  
-
-Skills in the following libraries are required:  
-
-1. Node JS
-2. React JS
-3. Socket.IO
-4. Docker (if prototype is run inside such a container)
-5. NPM / YARN (optional)
 
 # Installation (server-side)
 ### Directly on server machine
